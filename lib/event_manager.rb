@@ -82,10 +82,9 @@ date_array = Array.new()
 contents.each do |row|
   id = row[0]
   name = row[:first_name]
-  time = row[:RegDate]
   zipcode = format_zipcode(row[:zipcode])
   legislators = get_leg_by_zipcode(zipcode)
-  date_array = date_array << row[:regdate]
+  date_array << row[:regdate]
   
   # personal_letter = template_letter.gsub('FIRST_NAME', name)
   # personal_letter.gsub!('LEGISLATORS', legislators)
@@ -93,7 +92,6 @@ contents.each do |row|
   
   form_letter = erb_template.result(binding)
   save_thank_you_later(id, form_letter)
-  
 end
 p get_peak_registration_hours(date_array)
 p get_peak_registration_day_of_week(date_array)
